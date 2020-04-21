@@ -241,6 +241,7 @@ Download and build [CUDD with CMake](https://github.com/krooken/cudd). Create a 
 - mtr
 - st
 - util
+
 Copy `config.h` from the CUDD build directory into `dd\cudd-3.0.0`. Copy `cudd.lib` and `dddmp.lib` from the CUDD build directory into `dd\cudd-3.0.0\cudd\.libs` and `dd\cudd-3.0.0\dddmp\.libs`, respectively. Finally, run 
 ```
 python setup.py install --cudd --win
