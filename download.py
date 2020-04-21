@@ -99,14 +99,25 @@ def extensions(args):
     cudd_include = [(path, s) for s in CUDD_INCLUDE]
     cudd_link = [(path, s) for s in CUDD_LINK]
     _copy_cudd_license(args)
-    extensions = dict(
-        cudd=Extension(
+    if args.win:
+        ce = Extension(
             'dd.cudd',
             sources=['dd/cudd' + pyx],
             include_dirs=_join(cudd_include),
             library_dirs=_join(cudd_link),
             libraries=CUDD_LIB,
-            extra_compile_args=cudd_cflags),
+            extra_compile_args=['/MD'])
+        args.cudd = ''
+    else:
+        ce = Extension(
+            'dd.cudd',
+            sources=['dd/cudd' + pyx],
+            include_dirs=_join(cudd_include),
+            library_dirs=_join(cudd_link),
+            libraries=CUDD_LIB,
+            extra_compile_args=cudd_cflags)
+    extensions = dict(
+        cudd=ce,
         buddy=Extension(
             'dd.buddy',
             sources=['dd/buddy' + pyx],

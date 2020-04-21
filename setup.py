@@ -106,6 +106,10 @@ def parse_args():
     parser.add_argument(
         '--linetrace', action='store_true',
         help='use line tracing for Cython extensions')
+    parser.add_argument(
+        '--win', action='store_true',
+        help='building on WIN32'
+    )
     for opt in download.EXTENSIONS:
         parser.add_argument(
             '--{s}'.format(s=opt), default=None,
