@@ -1,5 +1,3 @@
-[![Build Status][build_img]][travis]
-[![Coverage Status][coverage]][coveralls]
 
 
 About
@@ -232,6 +230,26 @@ prior to calling `pip`, or by editing the file [`download.py`](https://github.co
 Currently, `download.py` expects to find Sylvan under `dd/sylvan` and built with [Autotools](https://en.wikipedia.org/wiki/GNU_Build_System)
 (for an example, see `.travis.yml`).
 If the path differs in your environment, remember to update it.
+
+
+### Windows install with CUDD
+
+Download and build [CUDD with CMake](https://github.com/krooken/cudd). Create a folder `cudd-3.0.0` in `dd`. Copy the following folders from the CUDD source directory into `cudd-3.0.0`:
+- cudd
+- dddmp
+- epd
+- mtr
+- st
+- util
+Copy `config.h` from the CUDD build directory into `dd\cudd-3.0.0`. Copy `cudd.lib` and `dddmp.lib` from the CUDD build directory into `dd\cudd-3.0.0\cudd\.libs` and `dd\cudd-3.0.0\dddmp\.libs`, respectively. Finally, run 
+```
+python setup.py install --cudd --win
+```
+to install `dd` with CUDD. Test the linking of CUDD by running the following in Python:
+```python
+import dd
+bdd = dd.cudd.BDD()
+```
 
 
 Tests
